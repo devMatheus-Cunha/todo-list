@@ -1,5 +1,5 @@
 const restful = require('node-restful');
-const mongooseTodo = restful.mongoose
+const mongoose = restful.mongoose
 
 const todoSchema = new mongoose.Schema({
   description: { type: String, required: true },
