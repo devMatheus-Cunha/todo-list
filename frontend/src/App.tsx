@@ -1,7 +1,14 @@
 import React from "react";
 
+// component
+import About from "./about";
+import Todo from "./todo";
+
 export function App() {
-  return <h1>Olaaaa</h1>;
+  return (
+    <>
+      <Todo />
+      <About />
+    </>
+  );
 }
-
-
