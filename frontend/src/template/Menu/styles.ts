@@ -8,6 +8,8 @@ export const Container = styled.div`
 
 export const Content = styled.div`
   display: flex;
+  align-items: center;
+  
   gap: 2rem;
 
   p {
@@ -36,8 +38,9 @@ export const Content = styled.div`
     }
   }
   
-  button {
+  a {
     color: var(--blue);
+    text-decoration: none;
     font-size: 1.2rem;
     font-family: 'Ubuntu', sans-serif;
     font-style: italic;
