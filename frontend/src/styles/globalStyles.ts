@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
   * {
@@ -13,6 +13,7 @@ export default createGlobalStyle`
     
     width:100%;
     height:100%;
+
   }
   *, button, input{
      border: 0;
@@ -22,7 +23,9 @@ export default createGlobalStyle`
     
     html{
       background: var(--primary);
+      color: white;
     }
+    
     :root {
       --primary: #000;
       --secondary: #15181C;
