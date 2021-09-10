@@ -10,6 +10,4 @@ width:98%;
    h2{
     padding-bottom: 0.5rem;
    }
-
-   
 `;
