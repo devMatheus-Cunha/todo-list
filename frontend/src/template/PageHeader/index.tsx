@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Header } from "./styles";
+import { Header, Separation } from "./styles";
 
 // types
 type PageHeaderProps = {
@@ -12,8 +12,9 @@ const PageHeader = ({ name, small }: PageHeaderProps) => {
   return (
     <Header>
       <h2>
-        {name} <small>{small}</small>
+        {name} <span>{small}</span>
       </h2>
+      <Separation />
     </Header>
   );
 };

@@ -31,7 +31,7 @@ export default createGlobalStyle`
       --secondary: #15181C;
       --navBar: #202327;
       --white-050: #D9D9D9;
-      --gray: #7A7A7A;
+      --gray: #cccc;
       --outline: #2F3336;     
       --green: #00C06B;
       --red: #E8265E;
