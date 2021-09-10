@@ -2,7 +2,13 @@ import React from "react";
 
 import { Header } from "./styles";
 
-const PageHeader = ({ name, small }: any) => {
+// types
+type PageHeaderProps = {
+  name: string,
+  small: string,
+}
+
+const PageHeader = ({ name, small }: PageHeaderProps) => {
   return (
     <Header>
       <h2>

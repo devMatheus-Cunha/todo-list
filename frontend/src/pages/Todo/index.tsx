@@ -1,11 +1,14 @@
-import React from 'react';
+import React from "react";
 
-const Todo: React.FC = () => {
+// template
+import PageHeader from "../../template/PageHeader";
+
+const Todo = () => {
   return (
     <div>
-      <h1>Todo</h1>
+      <PageHeader name="Tarefas" small="Cadastro" />
     </div>
   );
-}
+};
 
 export default Todo;
