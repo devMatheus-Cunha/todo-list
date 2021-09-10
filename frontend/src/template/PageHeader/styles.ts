@@ -17,5 +17,4 @@ export const Separation = styled.header`
  filter: brightness(20%);
 
  margin-top: 1rem;
-
 `;

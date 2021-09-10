@@ -1,5 +1,6 @@
 import React from "react";
 
+// styles 
 import { Header, Separation } from "./styles";
 
 // types

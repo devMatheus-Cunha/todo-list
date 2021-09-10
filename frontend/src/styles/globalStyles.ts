@@ -13,8 +13,8 @@ export default createGlobalStyle`
     
     width:100%;
     height:100%;
-
   }
+  
   *, button, input{
      border: 0;
      background: none;
