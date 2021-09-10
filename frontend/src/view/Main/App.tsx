@@ -2,15 +2,14 @@ import React from "react";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
 // parts
-import Todo from "../todo";
-import About from "../about";
+import Todo from "../../pages/Todo";
+import About from "../../pages/About";
 
 // styles
-import GlobalStyles from '../styles/globalStyles';
-import "bootstrap/dist/css/bootstrap.min.css";
+import GlobalStyles from '../../styles/globalStyles';
 
 // component
-import Menu from "../template/Menu";
+import Menu from "../../template/Menu";
 
 export function App() {
   return (
