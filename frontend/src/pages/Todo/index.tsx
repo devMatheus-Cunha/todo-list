@@ -4,8 +4,8 @@ import React from "react";
 import PageHeader from "../../template/PageHeader";
 
 // container
-import Form from "./items/form";
-import List from "./items/list";
+import Form from "./items/Form/form";
+import List from "./items/List/list";
 
 // styls
 import { Container } from "./styles";

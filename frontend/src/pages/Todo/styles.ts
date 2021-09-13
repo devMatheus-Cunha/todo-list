@@ -1,6 +1,7 @@
-import styled from 'styled-components';
+import styled from "styled-components"
 
 export const Container = styled.div`
-  padding: 0rem 2rem;
-`;
-
+margin: 3rem 4rem;
+.styleScreen{
+  display:none;
+}`
