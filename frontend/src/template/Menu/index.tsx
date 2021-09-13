@@ -1,5 +1,4 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
 
 // icons
 import { FcTodoList } from "react-icons/fc";
@@ -8,7 +7,6 @@ import { FcTodoList } from "react-icons/fc";
 import { Container, Content } from "./styles";
 
 const Menu: React.FC = () => {
-  const history = useHistory();
   return (
     <Container>
       <Content>
