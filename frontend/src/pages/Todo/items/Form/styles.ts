@@ -9,23 +9,33 @@ export const Container = styled.div`
 
 export const Content = styled.div`
   display: flex;
-  align-items: center;
   gap: 0.9rem;
 `;
 
 export const Input = styled.input`
+  width: 100%;
+  padding:0.5rem;
+
   color: white;
-  outline: none;
+  
+  border-radius: 0.2rem;
+  
+  outline: var(--outline);
+  background-color:transparent;
+  border: 1px solid var(--blue);
+
+  &:focus{
+    background-color: transparent;
+  }
 `;
 
 export const Button = styled.button`
   cursor: pointer;
-
   svg {
     path {
-      fill: var(--green);
+      fill: var(--blue);
     }
-    width: 22px;
-    height: 22px;
+    width: 33px;
+    height: 33px;
   }
 `;
