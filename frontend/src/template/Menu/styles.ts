@@ -44,6 +44,9 @@ export const Content = styled.div`
     font-size: 1.2rem;
     font-family: 'Ubuntu', sans-serif;
     font-style: italic;
+
+    transition: 100ms;
+
     &:hover {
       color: var(--blue-hover);
     }

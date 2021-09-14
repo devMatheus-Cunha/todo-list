@@ -23,10 +23,6 @@ export const Input = styled.input`
   outline: var(--outline);
   background-color:transparent;
   border: 1px solid var(--blue);
-
-  &:focus{
-    background-color: transparent;
-  }
 `;
 
 export const Button = styled.button`
@@ -34,6 +30,9 @@ export const Button = styled.button`
   svg {
     path {
       fill: var(--blue);
+      &:hover{
+        fill: var(--blue-hover);
+      }
     }
     width: 33px;
     height: 33px;

@@ -36,7 +36,7 @@ export default createGlobalStyle`
       --green: #00C06B;
       --red: #E8265E;
       --blue: #33A1F2;
+      --blue-hover: #2386cf;
       --dark-hover: #011017;
-      --blue-hover: #2C8ED6;
     }
 `;
