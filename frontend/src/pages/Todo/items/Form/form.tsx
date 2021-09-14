@@ -6,7 +6,14 @@ import { CgAddR } from "react-icons/cg";
 // styles
 import { Container, Content, Button, Input } from "./styles";
 
-const Form = () => {
+// types 
+type FormProps = {
+  handleAdd: () => void
+}
+
+const Form = ({
+  handleAdd
+}: FormProps) => {
   return (
     <Container>
       <Content>
@@ -17,7 +24,7 @@ const Form = () => {
           />
           <Button
             type="button"
-            onClick={() => console.log("Rodou button form")}
+            onClick={handleAdd}
           >
             <CgAddR />
           </Button>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 
 // template
 import PageHeader from "../../template/PageHeader";
@@ -11,10 +11,15 @@ import List from "./items/List/list";
 import { Container } from "./styles";
 
 const Todo = () => {
+  // functions
+  const handleAdd = useCallback(() => {
+    console.log("rodou");
+  }, []);
+
   return (
     <Container>
       <PageHeader name="Tarefas" small="Cadastro" />
-      <Form />
+      <Form handleAdd={handleAdd} />
       <List />
     </Container>
   );
