@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 
 // template
 import PageHeader from "../../template/PageHeader";
@@ -7,19 +7,27 @@ import PageHeader from "../../template/PageHeader";
 import Form from "./items/Form/form";
 import List from "./items/List/list";
 
-// styls
+// stylseee
 import { Container } from "./styles";
 
 const Todo = () => {
+  // states
+  const [description, setDescription] = useState("");
+  const [list, setList] = useState([]);
+
   // functions
   const handleAdd = useCallback(() => {
-    console.log("rodou");
-  }, []);
+    console.log(description);
+  }, [description]);
+
+  const handleChange = useCallback((value) => {
+    setDescription(value)
+  },[])
 
   return (
     <Container>
       <PageHeader name="Tarefas" small="Cadastro" />
-      <Form handleAdd={handleAdd} />
+      <Form handleAdd={handleAdd} description={description} handleChange={handleChange}/>
       <List />
     </Container>
   );

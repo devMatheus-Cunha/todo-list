@@ -9,10 +9,12 @@ import { Container, Content, Button, Input } from "./styles";
 // types 
 type FormProps = {
   handleAdd: () => void
+  handleChange: any
+  description: string
 }
 
 const Form = ({
-  handleAdd
+  handleAdd, description, handleChange,
 }: FormProps) => {
   return (
     <Container>
@@ -21,6 +23,8 @@ const Form = ({
             type="text"
             id="description"
             placeholder="Adicione uma tarefa"
+            value={description}
+            onChange={(event) => handleChange(event.target.value)}
           />
           <Button
             type="button"
