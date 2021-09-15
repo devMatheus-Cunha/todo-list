@@ -1,4 +1,5 @@
 import React, { useCallback, useState } from "react";
+import axios from "axios";
 
 // template
 import PageHeader from "../../template/PageHeader";
@@ -10,24 +11,33 @@ import List from "./items/List/list";
 // stylseee
 import { Container } from "./styles";
 
+// axios
+const URL = "http://localhost:3003/api/todos"
+
 const Todo = () => {
   // states
-  const [description, setDescription] = useState("");
+  const [valueDescription, setValueDescription] = useState("");
   const [list, setList] = useState([]);
+
 
   // functions
   const handleAdd = useCallback(() => {
-    console.log(description);
-  }, [description]);
+    const description = valueDescription;
+    axios.post(URL, {description}).then(resp => console.log("funfun"))
+  }, [valueDescription]);
 
   const handleChange = useCallback((value) => {
-    setDescription(value)
-  },[])
+    setValueDescription(value);
+  }, []);
 
   return (
     <Container>
       <PageHeader name="Tarefas" small="Cadastro" />
-      <Form handleAdd={handleAdd} description={description} handleChange={handleChange}/>
+      <Form
+        handleAdd={handleAdd}
+        description={valueDescription}
+        handleChange={handleChange}
+      />
       <List />
     </Container>
   );
