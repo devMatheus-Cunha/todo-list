@@ -5,6 +5,7 @@ margin: 3rem 4rem;
 .styleScreen{
   display:none;
 }
+
 table{
   width:100%;
   border-spacing: 0 0.5rem;
@@ -24,14 +25,6 @@ table{
     
     &:first-child{
       color: var(--text-title)
-    }
-    
-    &.deposit{
-      color: var(--green)
-    }
-    
-    &.withdraw{
-      color: var(--red)
     }
   }
   
@@ -63,13 +56,13 @@ table{
         flex-wrap: wrap;
         margin-top: 1rem;
         padding: 1rem 0;
+
         .contentTransactions{
           width: 100%;
           background:var(--shape);
           padding:1rem 2rem;
           border-radius:0.25rem;
-          
-          
+            
           display: flex;
           flex-wrap: wrap;
           align-items: center;
