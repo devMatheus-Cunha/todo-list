@@ -20,7 +20,6 @@ type ListType = {
   createdAt: string;
   description: string;
   done: boolean;
-  __v: number;
   _id: string;
 };
 

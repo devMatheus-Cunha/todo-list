@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FormEvent } from "react";
 
 // icons
 import { CgAddR } from "react-icons/cg";
@@ -9,7 +9,7 @@ import { Container, Content, Button, Input } from "./styles";
 // types 
 type FormProps = {
   handleAdd: () => void
-  handleChange: any
+  handleChange: (event: string) => void
   description: string
 }
 
