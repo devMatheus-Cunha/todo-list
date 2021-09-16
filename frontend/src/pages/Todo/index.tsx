@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 
 // template
@@ -8,37 +8,64 @@ import PageHeader from "../../template/PageHeader";
 import Form from "./items/Form/form";
 import List from "./items/List/list";
 
-// stylseee
+// styles
 import { Container } from "./styles";
 
+// interface and type
+interface IListProps {
+  list: ListType[]
+}
+
+type ListType = {
+  createdAt: string;
+  description: string;
+  done: boolean;
+  __v: number;
+  _id: string;
+};
+
 // axios
-const URL = "http://localhost:3003/api/todos"
+const URL = "http://localhost:3003/api/todos";
 
 const Todo = () => {
   // states
-  const [valueDescription, setValueDescription] = useState("");
-  const [list, setList] = useState([]);
-
+  const [valueDescription, setValueDescription] = useState<string>("");
+  const [list, setList] = useState<IListProps[]>();
 
   // functions
-  const handleAdd = useCallback(() => {
-    const description = valueDescription;
-    axios.post(URL, {description}).then(resp => console.log("funfun"))
-  }, [valueDescription]);
+  const refreshPage = () => {
+    axios.get(`${URL}?sort=-createAt`).then((resp) => {
+      setList(resp.data)
+      setValueDescription("")
+    });
+  };
 
   const handleChange = useCallback((value) => {
     setValueDescription(value);
+  }, []);
+
+  const handleAddTodoList = useCallback(() => {
+    const description = valueDescription;
+    axios.post(URL, { description }).then((resp) => refreshPage());
+  }, [valueDescription]);
+
+  const handleRemoveTodoList = useCallback((id: string) => {
+    axios.delete(`${URL}/${id}`).then((resp) => refreshPage());
+  },[])
+
+  useEffect(() => {
+    refreshPage();
   }, []);
 
   return (
     <Container>
       <PageHeader name="Tarefas" small="Cadastro" />
       <Form
-        handleAdd={handleAdd}
+        handleAdd={handleAddTodoList}
         description={valueDescription}
         handleChange={handleChange}
       />
-      <List />
+      <List dataList={list} handleRemove={handleRemoveTodoList}/>
     </Container>
   );
 };
