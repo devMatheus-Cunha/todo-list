@@ -11,7 +11,7 @@ import { Container } from "./styles";
 // interface and type
 interface IListProps {
   dataList: ListType[];
-  handleRemove: (id: string) => void
+  handleRemove: (id: string) => void;
 }
 
 type ListType = {
@@ -26,16 +26,16 @@ const List = ({ dataList, handleRemove }: any) => {
 
   return (
     <Container>
-      <table>
-        <thead>
-          <tr key="Ola">
-            <th>Título</th>
-            <th>Data</th>
-            <th>Ação</th>
-          </tr>
-        </thead>
-        <tbody>
-          <>
+      {list && list.length> 0 ? (
+        <table>
+          <thead>
+            <tr key="Ola">
+              <th>Título</th>
+              <th>Data</th>
+              <th>Ação</th>
+            </tr>
+          </thead>
+          <tbody>
             {list.map((list: ListType) => (
               <tr key={list._id}>
                 <td>{list.description}</td>
@@ -56,19 +56,21 @@ const List = ({ dataList, handleRemove }: any) => {
                   </Tooltip>
 
                   {/* <Tooltip title="Editar" placement="top" arrow>
-                    <button
-                      type="button"
-                      // onClick={() => handleOpenEditTransaction(value.id)}
-                    >
-                      <img src={editImage} alt="Editar" />
-                    </button>
-                  </Tooltip> */}
+                          <button
+                            type="button"
+                            // onClick={() => handleOpenEditTransaction(value.id)}
+                          >
+                            <img src={editImage} alt="Editar" />
+                          </button>
+                        </Tooltip> */}
                 </td>
               </tr>
             ))}
-          </>
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      ) : (
+        <h3>Nenhuma tarefa cadastrada</h3>
+      )}
     </Container>
   );
 };
