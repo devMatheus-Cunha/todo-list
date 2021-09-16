@@ -20,6 +20,10 @@ export default createGlobalStyle`
      background: none;
      font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     }
+
+    button {
+     cursor: pointer;
+    }
     
     html{
       background: var(--primary);
