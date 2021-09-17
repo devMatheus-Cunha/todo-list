@@ -26,7 +26,7 @@ const List = ({ dataList, handleRemove }: any) => {
 
   return (
     <Container>
-      {list && list.length> 0 ? (
+      {list && list.length > 0 ? (
         <table>
           <thead>
             <tr key="Ola">
@@ -66,6 +66,44 @@ const List = ({ dataList, handleRemove }: any) => {
                 </td>
               </tr>
             ))}
+            <div className="styleScreen">
+              {list.map((list: ListType) => {
+                return (
+                  <div key={list._id} className="contentTransactions">
+                    <div className="styleTitle">{list.description}</div>
+                    <div className="action">
+                      <Tooltip title="Deletar" placement="top" arrow>
+                        <button
+                          type="button"
+                          onClick={() => handleRemove(list._id)}
+                        >
+                          <img src={trashImage} alt="Lixeira" />
+                        </button>
+                      </Tooltip>
+
+                      {/* <Tooltip
+												title="Editar"
+												placement="top"
+												arrow
+											>
+												<button
+													type="button"
+													onClick={() => handleOpenEditTransaction(list.id)}
+												>
+													<img src={editImage} alt="Editar" />
+												</button>
+											</Tooltip> */}
+                    </div>
+                    <div className="styleCreatedAt">
+                      {" "}
+                      {new Intl.DateTimeFormat("pt-BR").format(
+                        new Date(list.createdAt)
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </tbody>
         </table>
       ) : (

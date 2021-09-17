@@ -77,10 +77,7 @@ table{
           font-weight: bold;
           font-size: 1.1rem;
         }
-        .stylePrice{
-          width: 100%;
-        }
-        .styleCategory, .styleCreatedAt{
+        .styleCreatedAt{
           color:#969CB2;
           padding-top: 1rem;
         }
