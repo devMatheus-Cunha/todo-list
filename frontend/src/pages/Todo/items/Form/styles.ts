@@ -14,14 +14,14 @@ export const Content = styled.div`
 
 export const Input = styled.input`
   width: 100%;
-  padding:0.5rem;
+  padding: 0.5rem;
 
   color: white;
-  
+
   border-radius: 0.2rem;
-  
+
   outline: var(--outline);
-  background-color:transparent;
+  background-color: transparent;
   border: 1px solid var(--blue);
 `;
 
@@ -30,11 +30,11 @@ export const Button = styled.button`
   svg {
     path {
       fill: var(--blue);
-      &:hover{
-        fill: var(--blue-hover);
-      }
     }
     width: 33px;
     height: 33px;
+    &:hover {
+      filter: brightness(0.8);
+    }
   }
 `;

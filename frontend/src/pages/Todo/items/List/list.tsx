@@ -3,7 +3,7 @@ import { Tooltip } from "@material-ui/core";
 
 // images
 import trashImage from "../../../../assets/images/trash-2.svg";
-// import editImage from "../../../../assets/images/edit-2.svg";
+import editImage from "../../../../assets/images/edit-2.svg";
 
 // styles
 import { Container } from "./styles";
@@ -55,14 +55,14 @@ const List = ({ dataList, handleRemove }: any) => {
                     </button>
                   </Tooltip>
 
-                  {/* <Tooltip title="Editar" placement="top" arrow>
+                  <Tooltip title="Editar" placement="top" arrow>
                           <button
                             type="button"
-                            // onClick={() => handleOpenEditTransaction(value.id)}
+                            // onClick={() => handleOpenEditTransaction(list._id)}
                           >
                             <img src={editImage} alt="Editar" />
                           </button>
-                        </Tooltip> */}
+                        </Tooltip>
                 </td>
               </tr>
             ))}
@@ -81,18 +81,18 @@ const List = ({ dataList, handleRemove }: any) => {
                         </button>
                       </Tooltip>
 
-                      {/* <Tooltip
+                      <Tooltip
 												title="Editar"
 												placement="top"
 												arrow
 											>
 												<button
 													type="button"
-													onClick={() => handleOpenEditTransaction(list.id)}
+													// onClick={() => handleOpenEditTransaction(list._id)}
 												>
 													<img src={editImage} alt="Editar" />
 												</button>
-											</Tooltip> */}
+											</Tooltip>
                     </div>
                     <div className="styleCreatedAt">
                       {" "}
