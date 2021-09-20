@@ -32,8 +32,8 @@ export default createGlobalStyle`
     
     :root {
       --primary: #000;
-      --secondary: #15181C;
-      --navBar: #202327;
+      --secondary:#0f1114;
+      --third: #202327;
       --white-050: #D9D9D9;
       --gray: #cccc;
       --outline: #2F3336;     
