@@ -10,23 +10,28 @@ export const Container = styled.div`
     width: 100%;
     border-spacing: 0 0.5rem;
     text-align: center;
-    
+
     th {
-      color: var(--gray);
+      color: var(--white-050);
       font-weight: 400;
       padding: 1rem 2rem;
       text-align: center;
       line-height: 1.5rem;
     }
+
     td {
       padding: 1rem 2rem;
       border: 0;
-      background-color: var(--secondary);
+      background-color: var(--third);
       color: var(--white-050);
-      border-radius: 0.2rem;
 
       &:first-child {
         color: var(--text-title);
+        border-radius: 0.3rem 0 0 0.3rem;
+      }
+
+      &:last-child {
+        border-radius: 0 0.3rem 0.3rem 0;
       }
     }
 
@@ -38,8 +43,14 @@ export const Container = styled.div`
 
         &:hover {
           filter: brightness(0.8);
-
         }
+      }
+    }
+
+    .doneStyle {
+      td {
+        background-color: var(--secondary);
+        color: var(--gray);
       }
     }
   }
