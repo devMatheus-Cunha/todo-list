@@ -12,16 +12,16 @@ import List from "./items/List/list";
 import { Container } from "./styles";
 
 // interface and type
-interface IListProps {
-  list: ListType[]
-}
-
 type ListType = {
   createdAt: string;
   description: string;
   done: boolean;
   _id: string;
 };
+
+interface IListProps {
+  list: ListType[];
+}
 
 // axios
 const URL = "http://localhost:3003/api/todos";
@@ -34,8 +34,8 @@ const Todo = () => {
   // functions
   const refreshPage = () => {
     axios.get(`${URL}?sort=-createAt`).then((resp) => {
-      setList(resp.data)
-      setValueDescription("")
+      setList(resp.data);
+      setValueDescription("");
     });
   };
 
@@ -48,9 +48,21 @@ const Todo = () => {
     axios.post(URL, { description }).then((resp) => refreshPage());
   }, [valueDescription]);
 
+  const handleCheckTodoList = useCallback((todoList: ListType) => {
+    axios
+      .put(`${URL}/${todoList._id}`, { ...todoList, done: true })
+      .then((resp) => refreshPage());
+  }, []);
+
+  const handleMarkAsPeddingList = useCallback((todoList: ListType) => {
+    axios
+      .put(`${URL}/${todoList._id}`, { ...todoList, done: false })
+      .then((resp) => refreshPage());
+  }, []);
+
   const handleRemoveTodoList = useCallback((id: string) => {
     axios.delete(`${URL}/${id}`).then((resp) => refreshPage());
-  },[])
+  }, []);
 
   useEffect(() => {
     refreshPage();
@@ -64,7 +76,13 @@ const Todo = () => {
         description={valueDescription}
         handleChange={handleChange}
       />
-      <List dataList={list} handleRemove={handleRemoveTodoList}/>
+
+      <List
+        dataList={list}
+        handleRemove={handleRemoveTodoList}
+        handleCheckList={handleCheckTodoList}
+        handleMarkAsPeddingList={handleMarkAsPeddingList}
+      />
     </Container>
   );
 };
