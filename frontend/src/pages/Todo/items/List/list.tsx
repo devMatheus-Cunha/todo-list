@@ -4,14 +4,18 @@ import { Tooltip } from "@material-ui/core";
 // images
 import trashImage from "../../../../assets/images/trash-2.svg";
 import editImage from "../../../../assets/images/edit-2.svg";
+import checImage from "../../../../assets/images/check-circle.svg";
+import refreshImage from "../../../../assets/images/refresh.svg";
 
 // styles
 import { Container } from "./styles";
 
 // interface and type
 interface IListProps {
-  dataList: ListType[];
+  dataList: any;
   handleRemove: (id: string) => void;
+  handleCheckList: (id: ListType) => void;
+  handleMarkAsPeddingList: (id: ListType) => void;
 }
 
 type ListType = {
@@ -21,7 +25,12 @@ type ListType = {
   _id: string;
 };
 
-const List = ({ dataList, handleRemove }: any) => {
+const List = ({
+  dataList,
+  handleRemove,
+  handleCheckList,
+  handleMarkAsPeddingList,
+}: IListProps) => {
   const list = dataList || [];
 
   return (
@@ -37,7 +46,7 @@ const List = ({ dataList, handleRemove }: any) => {
           </thead>
           <tbody>
             {list.map((list: ListType) => (
-              <tr key={list._id}>
+              <tr key={list._id} className={!list.done ? "doneStyle" : ""}>
                 <td>{list.description}</td>
                 <td>
                   {" "}
@@ -46,6 +55,27 @@ const List = ({ dataList, handleRemove }: any) => {
                   )}
                 </td>
                 <td className="action">
+                  <Tooltip title="Concluido" placement="top" arrow>
+                    <button type="button" onClick={() => handleCheckList(list)}>
+                      <img src={checImage} alt="Concluido" />
+                    </button>
+                  </Tooltip>
+                  <Tooltip title="Concluido" placement="top" arrow>
+                    <button
+                      type="button"
+                      onClick={() => handleMarkAsPeddingList(list)}
+                    >
+                      <img src={refreshImage} alt="Concluido" />
+                    </button>
+                  </Tooltip>
+                  {/* <Tooltip title="Editar" placement="top" arrow>
+                    <button
+                      type="button"
+                      // onClick={() => handleOpenEditTransaction(list._id)}
+                    >
+                      <img src={editImage} alt="Editar" />
+                    </button>
+                  </Tooltip> */}
                   <Tooltip title="Deletar" placement="top" arrow>
                     <button
                       type="button"
@@ -54,15 +84,6 @@ const List = ({ dataList, handleRemove }: any) => {
                       <img src={trashImage} alt="Lixeira" />
                     </button>
                   </Tooltip>
-
-                  <Tooltip title="Editar" placement="top" arrow>
-                          <button
-                            type="button"
-                            // onClick={() => handleOpenEditTransaction(list._id)}
-                          >
-                            <img src={editImage} alt="Editar" />
-                          </button>
-                        </Tooltip>
                 </td>
               </tr>
             ))}
@@ -81,18 +102,14 @@ const List = ({ dataList, handleRemove }: any) => {
                         </button>
                       </Tooltip>
 
-                      <Tooltip
-												title="Editar"
-												placement="top"
-												arrow
-											>
-												<button
-													type="button"
-													// onClick={() => handleOpenEditTransaction(list._id)}
-												>
-													<img src={editImage} alt="Editar" />
-												</button>
-											</Tooltip>
+                      <Tooltip title="Editar" placement="top" arrow>
+                        <button
+                          type="button"
+                          // onClick={() => handleOpenEditTransaction(list._id)}
+                        >
+                          <img src={editImage} alt="Editar" />
+                        </button>
+                      </Tooltip>
                     </div>
                     <div className="styleCreatedAt">
                       {" "}
