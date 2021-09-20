@@ -21,7 +21,17 @@
     "style-loader": "^0.13.1",
     "styled-components": "^5.3.1",
     "typescript": "^4.1.2",
+    "react-toastify": "^7.0.4",
     "@material-ui/core": "^4.12.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.15",
+    "@types/react": "^17.0.20",
+    "@types/react-toastify": "^4.1.0",
+    "@types/react-dom": "^17.0.0",
+    "@types/react-router": "^5.1.16",
+    "@types/react-router-dom": "^5.1.8",
+    "@types/styled-components": "^5.1.14"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -46,13 +56,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "@types/jest": "^26.0.15",
-    "@types/react": "^17.0.20",
-    "@types/react-dom": "^17.0.0",
-    "@types/react-router": "^5.1.16",
-    "@types/react-router-dom": "^5.1.8",
-    "@types/styled-components": "^5.1.14"
   }
 }
