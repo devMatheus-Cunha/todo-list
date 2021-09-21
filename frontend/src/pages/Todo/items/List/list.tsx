@@ -46,7 +46,7 @@ const List = ({
           </thead>
           <tbody>
             {list.map((list: ListType) => (
-              <tr key={list._id} className={!list.done ? "doneStyle" : ""}>
+              <tr key={list._id} className={list.done ? "doneStyle" : ""}>
                 <td>{list.description}</td>
                 <td>
                   {" "}
@@ -55,19 +55,27 @@ const List = ({
                   )}
                 </td>
                 <td className="action">
-                  <Tooltip title="Concluido" placement="top" arrow>
-                    <button type="button" onClick={() => handleCheckList(list)}>
-                      <img src={checImage} alt="Concluido" />
-                    </button>
-                  </Tooltip>
-                  <Tooltip title="Concluido" placement="top" arrow>
-                    <button
-                      type="button"
-                      onClick={() => handleMarkAsPeddingList(list)}
-                    >
-                      <img src={refreshImage} alt="Concluido" />
-                    </button>
-                  </Tooltip>
+                  <>
+                    {!list.done ? (
+                      <Tooltip title="Concluido" placement="top" arrow>
+                        <button
+                          type="button"
+                          onClick={() => handleCheckList(list)}
+                        >
+                          <img src={checImage} alt="Concluido" />
+                        </button>
+                      </Tooltip>
+                    ) : (
+                      <Tooltip title="Renovar" placement="top" arrow>
+                        <button
+                          type="button"
+                          onClick={() => handleMarkAsPeddingList(list)}
+                        >
+                          <img src={refreshImage} alt="Renovar" />
+                        </button>
+                      </Tooltip>
+                    )}
+                  </>
                   {/* <Tooltip title="Editar" placement="top" arrow>
                     <button
                       type="button"
