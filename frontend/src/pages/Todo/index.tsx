@@ -45,7 +45,14 @@ const Todo = () => {
 
   const handleAddTodoList = useCallback(() => {
     const description = valueDescription;
-    axios.post(URL, { description }).then((resp) => refreshPage());
+    if (description.length > 0) {
+      axios.post(URL, { description }).then((resp) => {
+        console.log(resp)
+        refreshPage();
+      });
+    } else {
+      alert("Campo para adicionar tarefa vazio!")
+    }
   }, [valueDescription]);
 
   const handleCheckTodoList = useCallback((todoList: ListType) => {
