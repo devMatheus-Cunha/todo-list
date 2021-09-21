@@ -30,6 +30,7 @@ const List = ({
   handleRemove,
   handleCheckList,
   handleMarkAsPeddingList,
+  
 }: IListProps) => {
   const list = dataList || [];
 

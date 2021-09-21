@@ -32,12 +32,17 @@ const Todo = () => {
   const [list, setList] = useState<IListProps[]>();
 
   // functions
-  const refreshPage = () => {
-    axios.get(`${URL}?sort=-createAt`).then((resp) => {
+  const refreshPage = (description: string) => {
+    const search = description ? `&description__regex=/${description}/` : "";
+    axios.get(`${URL}?sort=-createAt${search}`).then((resp) => {
       setList(resp.data);
-      setValueDescription("");
+      setValueDescription(description);
     });
   };
+
+  const handleSearchList = useCallback(() => {
+    refreshPage(valueDescription)
+  }, [valueDescription])
 
   const handleChange = useCallback((value) => {
     setValueDescription(value);
@@ -47,32 +52,32 @@ const Todo = () => {
     const description = valueDescription;
     if (description.length > 0) {
       axios.post(URL, { description }).then((resp) => {
-        console.log(resp)
-        refreshPage();
+        console.log(resp);
+        refreshPage("");
       });
     } else {
-      alert("Campo para adicionar tarefa vazio!")
+      alert("Campo para adicionar tarefa vazio!");
     }
   }, [valueDescription]);
 
-  const handleCheckTodoList = useCallback((todoList: ListType) => {
+  const handleAsDoneTodoList = useCallback((todoList: ListType) => {
     axios
       .put(`${URL}/${todoList._id}`, { ...todoList, done: true })
-      .then((resp) => refreshPage());
-  }, []);
+      .then((resp) => refreshPage(valueDescription));
+  }, [valueDescription]);
 
   const handleMarkAsPeddingList = useCallback((todoList: ListType) => {
     axios
       .put(`${URL}/${todoList._id}`, { ...todoList, done: false })
-      .then((resp) => refreshPage());
-  }, []);
+      .then((resp) => refreshPage(valueDescription));
+  }, [valueDescription]);
 
   const handleRemoveTodoList = useCallback((id: string) => {
-    axios.delete(`${URL}/${id}`).then((resp) => refreshPage());
-  }, []);
+    axios.delete(`${URL}/${id}`).then((resp) => refreshPage(valueDescription));
+  }, [valueDescription]);
 
   useEffect(() => {
-    refreshPage();
+    refreshPage("");
   }, []);
 
   return (
@@ -82,12 +87,13 @@ const Todo = () => {
         handleAdd={handleAddTodoList}
         description={valueDescription}
         handleChange={handleChange}
+        handleSearch={handleSearchList}
       />
 
       <List
         dataList={list}
         handleRemove={handleRemoveTodoList}
-        handleCheckList={handleCheckTodoList}
+        handleCheckList={handleAsDoneTodoList}
         handleMarkAsPeddingList={handleMarkAsPeddingList}
       />
     </Container>
