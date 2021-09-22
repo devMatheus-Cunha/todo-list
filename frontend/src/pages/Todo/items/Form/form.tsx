@@ -6,7 +6,7 @@ import { BsSearch } from "react-icons/bs";
 import { MdClear } from "react-icons/md";
 
 // styles
-import { Container, Content, Button, InputContent } from "./styles";
+import { Container, Content, ButtonAdd, InputContent, ButtonSearch } from "./styles";
 
 // types
 type FormProps = {
@@ -35,16 +35,16 @@ const Form = ({
             value={description}
             onChange={(event) => handleChange(event.target.value)}
           />
-          <Button type="button" onClick={handleClear}>
+          <button type="button" onClick={handleClear}>
             <MdClear />
-          </Button>
+          </button>
         </InputContent>
-        <Button type="button" onClick={handleAdd}>
+        <ButtonAdd type="button" onClick={handleAdd}>
           <CgAddR />
-        </Button>
-        <Button type="button" onClick={handleSearch}>
+        </ButtonAdd>
+        <ButtonSearch type="button" onClick={handleSearch}>
           <BsSearch />
-        </Button>
+        </ButtonSearch>
       </Content>
     </Container>
   );

@@ -56,7 +56,7 @@ const Todo = () => {
         refreshPage("");
       });
     } else {
-      alert("Campo para adicionar tarefa vazio!");
+      alert("Campo para adicionar tarefa está vazio!");
     }
   }, [valueDescription]);
 

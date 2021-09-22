@@ -12,14 +12,28 @@ export const Content = styled.div`
   gap: 0.9rem;
 `;
 
-export const Button = styled.button`
+export const ButtonAdd = styled.button`
   cursor: pointer;
   svg {
     path {
       fill: var(--blue);
     }
-    width: 33px;
-    height: 33px;
+    width: 30px;
+    height: 30px;
+    &:hover {
+      filter: brightness(0.8);
+    }
+  }
+`;
+
+export const ButtonSearch = styled.button`
+  cursor: pointer;
+  svg {
+    path {
+      fill: var(--blue);
+    }
+    width: 26px;
+    height: 26px;
     &:hover {
       filter: brightness(0.8);
     }
@@ -36,16 +50,16 @@ export const InputContent = styled.div`
 
   > button {
     svg {
-    path {
-      fill: var(--blue);
+      path {
+        fill: var(--blue);
+      }
+      width: 23px;
+      height: 23px;
+      margin-right: 0.3rem;
+      &:hover {
+        filter: brightness(0.8);
+      }
     }
-    width: 23px;
-    height: 23px;
-    margin-right: 0.3rem;
-    &:hover {
-      filter: brightness(0.8);
-    }
-  }
   }
 
   input {
