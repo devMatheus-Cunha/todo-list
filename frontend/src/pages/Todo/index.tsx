@@ -76,6 +76,10 @@ const Todo = () => {
     axios.delete(`${URL}/${id}`).then((resp) => refreshPage(valueDescription));
   }, [valueDescription]);
 
+  const handleClearTodoList = useCallback(() => {
+    refreshPage("")
+  },[])
+
   useEffect(() => {
     refreshPage("");
   }, []);
@@ -88,6 +92,7 @@ const Todo = () => {
         description={valueDescription}
         handleChange={handleChange}
         handleSearch={handleSearchList}
+        handleClear={handleClearTodoList}
       />
 
       <List

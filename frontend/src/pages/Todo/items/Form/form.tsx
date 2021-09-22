@@ -13,6 +13,7 @@ type FormProps = {
   handleAdd: () => void;
   handleChange: (event: string) => void;
   handleSearch: () => void;
+  handleClear: () => void;
   description: string;
 };
 
@@ -21,6 +22,7 @@ const Form = ({
   description,
   handleChange,
   handleSearch,
+  handleClear,
 }: FormProps) => {
   return (
     <Container>
@@ -33,7 +35,7 @@ const Form = ({
             value={description}
             onChange={(event) => handleChange(event.target.value)}
           />
-          <Button type="button" onClick={handleSearch}>
+          <Button type="button" onClick={handleClear}>
             <MdClear />
           </Button>
         </InputContent>
