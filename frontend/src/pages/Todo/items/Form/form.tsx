@@ -24,6 +24,14 @@ const Form = ({
   handleSearch,
   handleClear,
 }: FormProps) => {
+  // function
+  const keyHandler = (event: any) => {
+    if (event.key === "Enter") {
+      event.shiftKey ? handleSearch() : handleAdd() 
+    } else if (event.key === "Escape") {
+      handleClear()
+    }
+  }
   return (
     <Container>
       <Content>
@@ -33,6 +41,7 @@ const Form = ({
             id="description"
             placeholder="Adicione uma tarefa"
             value={description}
+            onKeyUp={keyHandler}
             onChange={(event) => handleChange(event.target.value)}
           />
           <button type="button" onClick={handleClear}>
