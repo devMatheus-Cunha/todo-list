@@ -3,9 +3,10 @@ import React from "react";
 // icons
 import { CgAddR } from "react-icons/cg";
 import { BsSearch } from "react-icons/bs";
+import { MdClear } from "react-icons/md";
 
 // styles
-import { Container, Content, Button, Input } from "./styles";
+import { Container, Content, Button, InputContent } from "./styles";
 
 // types
 type FormProps = {
@@ -24,13 +25,18 @@ const Form = ({
   return (
     <Container>
       <Content>
-        <Input
-          type="text"
-          id="description"
-          placeholder="Adicione uma tarefa"
-          value={description}
-          onChange={(event) => handleChange(event.target.value)}
-        />
+        <InputContent>
+          <input
+            type="text"
+            id="description"
+            placeholder="Adicione uma tarefa"
+            value={description}
+            onChange={(event) => handleChange(event.target.value)}
+          />
+          <Button type="button" onClick={handleSearch}>
+            <MdClear />
+          </Button>
+        </InputContent>
         <Button type="button" onClick={handleAdd}>
           <CgAddR />
         </Button>
