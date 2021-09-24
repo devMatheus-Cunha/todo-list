@@ -20,12 +20,12 @@ $ cd todo-list
 
 To start it, follow the steps below:
 ```bash
-# cd frontend
+$ cd frontend
 # Install the dependencies
 $ npm i
 
-# cd backend
-# Install the dependencies
+$ cd backend
+# Install the dependencies 
 $ npm i
 
 # Start the project frontend
