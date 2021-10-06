@@ -1,18 +1,19 @@
 import React from "react";
+import { connect } from 'react-redux'
 import { Tooltip } from "@material-ui/core";
 
 // images
 import trashImage from "../../../../assets/images/trash-2.svg";
-import editImage from "../../../../assets/images/edit-2.svg";
 import checImage from "../../../../assets/images/check-circle.svg";
 import refreshImage from "../../../../assets/images/refresh.svg";
 
 // styles
 import { Container } from "./styles";
 
+
 // interface and type
 interface IListProps {
-  dataList: any;
+  list: any;
   handleRemove: (id: string) => void;
   handleCheckList: (id: ListType) => void;
   handleMarkAsPeddingList: (id: ListType) => void;
@@ -26,13 +27,12 @@ type ListType = {
 };
 
 const List = ({
-  dataList,
+  list,
   handleRemove,
   handleCheckList,
   handleMarkAsPeddingList,
-  
 }: IListProps) => {
-  const list = dataList || [];
+  const listDataRequest = list || [];
 
   return (
     <Container>
@@ -46,7 +46,7 @@ const List = ({
             </tr>
           </thead>
           <tbody>
-            {list.map((list: ListType) => (
+            {listDataRequest.map((list: ListType) => (
               <tr key={list._id} className={list.done ? "doneStyle" : ""}>
                 <td>{list.description}</td>
                 <td>
@@ -77,14 +77,6 @@ const List = ({
                       </Tooltip>
                     )}
                   </>
-                  {/* <Tooltip title="Editar" placement="top" arrow>
-                    <button
-                      type="button"
-                      // onClick={() => handleOpenEditTransaction(list._id)}
-                    >
-                      <img src={editImage} alt="Editar" />
-                    </button>
-                  </Tooltip> */}
                   <Tooltip title="Deletar" placement="top" arrow>
                     <button
                       type="button"
@@ -97,7 +89,7 @@ const List = ({
               </tr>
             ))}
             <div className="styleScreen">
-              {list.map((list: ListType) => {
+              {listDataRequest.map((list: ListType) => {
                 return (
                   <div key={list._id} className="contentTransactions">
                     <div className="styleTitle">{list.description}</div>
@@ -108,15 +100,6 @@ const List = ({
                           onClick={() => handleRemove(list._id)}
                         >
                           <img src={trashImage} alt="Lixeira" />
-                        </button>
-                      </Tooltip>
-
-                      <Tooltip title="Editar" placement="top" arrow>
-                        <button
-                          type="button"
-                          // onClick={() => handleOpenEditTransaction(list._id)}
-                        >
-                          <img src={editImage} alt="Editar" />
                         </button>
                       </Tooltip>
                     </div>
@@ -139,4 +122,13 @@ const List = ({
   );
 };
 
-export default List;
+
+const mapStateToProps = (state: any) => ({
+  list: state.todo.list
+})
+
+const mapDispatchToProps = {
+  
+}
+export default connect(mapStateToProps, mapDispatchToProps)(List)
+

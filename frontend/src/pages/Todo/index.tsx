@@ -96,7 +96,6 @@ const Todo = () => {
       />
 
       <List
-        dataList={list}
         handleRemove={handleRemoveTodoList}
         handleCheckList={handleAsDoneTodoList}
         handleMarkAsPeddingList={handleMarkAsPeddingList}
