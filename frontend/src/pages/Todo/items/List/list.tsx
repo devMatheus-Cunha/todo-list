@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Dispatch } from "redux"
 import { connect } from 'react-redux'
 import { Tooltip } from "@material-ui/core";
 
@@ -9,11 +10,14 @@ import refreshImage from "../../../../assets/images/refresh.svg";
 
 // styles
 import { Container } from "./styles";
+import { bindActionCreators } from "redux";
+import { changeList } from "../../../../store/actions";
 
 
 // interface and type
 interface IListProps {
-  list: any;
+  changeList: any;
+  list: any
   handleRemove: (id: string) => void;
   handleCheckList: (id: ListType) => void;
   handleMarkAsPeddingList: (id: ListType) => void;
@@ -28,12 +32,17 @@ type ListType = {
 
 const List = ({
   list,
+  changeList,
   handleRemove,
   handleCheckList,
   handleMarkAsPeddingList,
 }: IListProps) => {
   const listDataRequest = list || [];
-
+  
+  useEffect(() => {
+    changeList()
+  }, [])
+  
   return (
     <Container>
       {list && list.length > 0 ? (
@@ -126,9 +135,8 @@ const List = ({
 const mapStateToProps = (state: any) => ({
   list: state.todo.list
 })
+const mapDispatchToProps = (dispatch: Dispatch) => 
+bindActionCreators({changeList}, dispatch)
 
-const mapDispatchToProps = {
-  
-}
 export default connect(mapStateToProps, mapDispatchToProps)(List)
 

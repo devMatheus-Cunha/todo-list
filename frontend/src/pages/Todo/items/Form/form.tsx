@@ -40,6 +40,7 @@ const Form = ({
       handleClear();
     }
   };
+  
   return (
     <Container>
       <Content>
