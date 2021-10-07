@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 
 // icons
 import { CgAddR } from "react-icons/cg";
@@ -59,4 +60,8 @@ const Form = ({
   );
 };
 
-export default Form;
+const mapStateToProps = (state: any) => ({
+  description: state.todo.description
+})
+
+export default connect(mapStateToProps)(Form);

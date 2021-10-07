@@ -89,7 +89,6 @@ const Todo = () => {
       <PageHeader name="Tarefas" small="Cadastro" />
       <Form
         handleAdd={handleAddTodoList}
-        description={valueDescription}
         handleChange={handleChange}
         handleSearch={handleSearchList}
         handleClear={handleClearTodoList}
