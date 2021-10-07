@@ -6,7 +6,7 @@ import Todo from "../../pages/Todo";
 import About from "../../pages/About";
 
 // styles
-import GlobalStyles from '../../styles/globalStyles';
+import GlobalStyles from '../../assets/styles/globalStyles';
 
 // component
 import Menu from "../../template/Menu";
