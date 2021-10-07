@@ -1,38 +1,45 @@
 import React from "react";
 import { connect } from "react-redux";
-
+import { bindActionCreators, Dispatch } from "redux";
 // icons
 import { CgAddR } from "react-icons/cg";
 import { BsSearch } from "react-icons/bs";
 import { MdClear } from "react-icons/md";
+import { changeDescription } from "../../../../store/actions";
 
 // styles
-import { Container, Content, ButtonAdd, InputContent, ButtonSearch } from "./styles";
+import {
+  Container,
+  Content,
+  ButtonAdd,
+  InputContent,
+  ButtonSearch,
+} from "./styles";
 
 // types
 type FormProps = {
   handleAdd: () => void;
-  handleChange: (event: string) => void;
   handleSearch: () => void;
   handleClear: () => void;
   description: string;
+  changeDescription: any;
 };
 
 const Form = ({
   handleAdd,
   description,
-  handleChange,
+  changeDescription,
   handleSearch,
   handleClear,
 }: FormProps) => {
   // function
   const keyHandler = (event: any) => {
     if (event.key === "Enter") {
-      event.shiftKey ? handleSearch() : handleAdd() 
+      event.shiftKey ? handleSearch() : handleAdd();
     } else if (event.key === "Escape") {
-      handleClear()
+      handleClear();
     }
-  }
+  };
   return (
     <Container>
       <Content>
@@ -43,7 +50,7 @@ const Form = ({
             placeholder="Adicione uma tarefa"
             value={description}
             onKeyUp={keyHandler}
-            onChange={(event) => handleChange(event.target.value)}
+            onChange={changeDescription}
           />
           <button type="button" onClick={handleClear}>
             <MdClear />
@@ -61,7 +68,10 @@ const Form = ({
 };
 
 const mapStateToProps = (state: any) => ({
-  description: state.todo.description
-})
+  description: state.todo.description,
+});
 
-export default connect(mapStateToProps)(Form);
+const mapDispatchToProps = (dispatch: Dispatch) => 
+bindActionCreators({changeDescription}, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(Form);
