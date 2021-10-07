@@ -1,33 +1,10 @@
 const initialState = 
   {
     description: "",
-    list: [
-      {
-        _id: 1,
-        description: "Pagar livro",
-        done: true,
-        createdAt: new Date(),
-      },
-      {
-        _id: 2,
-        description: "Pagar celular",
-        done: false,
-        createdAt: new Date(),
-      },
-      {
-        _id: 3,
-        description: "Cobrar vizinha",
-        done: false,
-        createdAt: new Date(),
-      },
-      {
-        _id: 4,
-        description: "Pagar Ber e Tide",
-        done: true,
-        createdAt: new Date(),
-      },
-    ],
+    list: [],
   }
+
+  console.log(initialState.list)
 
 export const ReduceStateTodoAndDescription = (
   state = initialState,
@@ -39,9 +16,14 @@ export const ReduceStateTodoAndDescription = (
         ...state,
         description: payload,
       };
-    default:
+    case "LIST_CHAGED":
       return {
         ...state,
+        list: payload.data,
       };
-  }
-};
+      default:
+        return {
+          ...state,
+        };
+      }
+    };
