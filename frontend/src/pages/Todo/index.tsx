@@ -44,10 +44,6 @@ const Todo = () => {
     refreshPage(valueDescription)
   }, [valueDescription])
 
-  const handleChange = useCallback((value) => {
-    setValueDescription(value);
-  }, []);
-
   const handleAddTodoList = useCallback(() => {
     const description = valueDescription;
     if (description.length > 0) {

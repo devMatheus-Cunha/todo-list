@@ -1,6 +1,6 @@
 const initialState = 
   {
-    description: "Ler livro",
+    description: "",
     list: [
       {
         _id: 1,
