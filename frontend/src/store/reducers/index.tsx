@@ -1,7 +1,5 @@
-import { combineReducers, createStore } from "redux";
-
- const rootReducer = combineReducers({
-  todo: () => ({
+const initialState = 
+  {
     description: "Ler livro",
     list: [
       {
@@ -22,10 +20,28 @@ import { combineReducers, createStore } from "redux";
         done: false,
         createdAt: new Date(),
       },
+      {
+        _id: 4,
+        description: "Pagar Ber e Tide",
+        done: true,
+        createdAt: new Date(),
+      },
     ],
-  }),
-});
+  }
 
-export function storeConfig() {
-  return createStore(rootReducer);
-}
+export const ReduceStateTodoAndDescription = (
+  state = initialState,
+  { type, payload }: any
+) => {
+  switch (type) {
+    case "DESCRIPTION_CHAGED":
+      return {
+        ...state,
+        description: payload,
+      };
+    default:
+      return {
+        ...state,
+      };
+  }
+};
