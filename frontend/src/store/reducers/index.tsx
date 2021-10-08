@@ -21,6 +21,11 @@ export const ReduceStateTodoAndDescription = (
         ...state,
         list: payload.data,
       };
+    case "ADD_DATA":
+      return {
+        ...state,
+        description: "",
+      };
       default:
         return {
           ...state,
