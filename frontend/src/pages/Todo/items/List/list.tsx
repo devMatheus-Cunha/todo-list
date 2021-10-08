@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Dispatch } from "redux"
 import { connect } from 'react-redux'
 import { Tooltip } from "@material-ui/core";
@@ -11,14 +11,14 @@ import refreshImage from "../../../../assets/images/refresh.svg";
 // styles
 import { Container } from "./styles";
 import { bindActionCreators } from "redux";
-import { changeList } from "../../../../store/actions";
+import { search } from "../../../../store/actions";
 
 
 // interface and type
 interface IListProps {
-  changeList: any;
+  search: any;
   list: any
-  handleRemove: (id: string) => void;
+  remove?:any;
   handleCheckList: (id: ListType) => void;
   handleMarkAsPeddingList: (id: ListType) => void;
 }
@@ -32,16 +32,15 @@ type ListType = {
 
 const List = ({
   list,
-  changeList,
-  handleRemove,
+  search,
   handleCheckList,
   handleMarkAsPeddingList,
 }: IListProps) => {
   const listDataRequest = list || [];
-  
+
   useEffect(() => {
-    changeList()
-  }, [])
+    search()
+  }, [search])
   
   return (
     <Container>
@@ -89,7 +88,8 @@ const List = ({
                   <Tooltip title="Deletar" placement="top" arrow>
                     <button
                       type="button"
-                      onClick={() => handleRemove(list._id)}
+                      onClick={() => console.log(list._id) }
+                      // onClick={() => remove(list._id) }
                     >
                       <img src={trashImage} alt="Lixeira" />
                     </button>
@@ -97,31 +97,6 @@ const List = ({
                 </td>
               </tr>
             ))}
-            <div className="styleScreen">
-              {listDataRequest.map((list: ListType) => {
-                return (
-                  <div key={list._id} className="contentTransactions">
-                    <div className="styleTitle">{list.description}</div>
-                    <div className="action">
-                      <Tooltip title="Deletar" placement="top" arrow>
-                        <button
-                          type="button"
-                          onClick={() => handleRemove(list._id)}
-                        >
-                          <img src={trashImage} alt="Lixeira" />
-                        </button>
-                      </Tooltip>
-                    </div>
-                    <div className="styleCreatedAt">
-                      {" "}
-                      {new Intl.DateTimeFormat("pt-BR").format(
-                        new Date(list.createdAt)
-                      )}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
           </tbody>
         </table>
       ) : (
@@ -136,7 +111,6 @@ const mapStateToProps = (state: any) => ({
   list: state.todo.list
 })
 const mapDispatchToProps = (dispatch: Dispatch) => 
-bindActionCreators({changeList}, dispatch)
+bindActionCreators({search}, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(List)
-
