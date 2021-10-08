@@ -5,7 +5,7 @@ import { bindActionCreators, Dispatch } from "redux";
 import { CgAddR } from "react-icons/cg";
 import { BsSearch } from "react-icons/bs";
 import { MdClear } from "react-icons/md";
-import { changeDescription } from "../../../../store/actions";
+import { add, changeDescription, search } from "../../../../store/actions";
 
 // styles
 import {
@@ -18,24 +18,24 @@ import {
 
 // types
 type FormProps = {
-  handleAdd: () => void;
-  handleSearch: () => void;
+  add: any;
+  search: any;
   handleClear: () => void;
   description: string;
   changeDescription: any;
 };
 
 const Form = ({
-  handleAdd,
+  add,
   description,
   changeDescription,
-  handleSearch,
+  search,
   handleClear,
 }: FormProps) => {
   // function
   const keyHandler = (event: any) => {
     if (event.key === "Enter") {
-      event.shiftKey ? handleSearch() : handleAdd();
+      event.shiftKey ? search() : add(description);
     } else if (event.key === "Escape") {
       handleClear();
     }
@@ -57,10 +57,10 @@ const Form = ({
             <MdClear />
           </button>
         </InputContent>
-        <ButtonAdd type="button" onClick={handleAdd}>
+        <ButtonAdd type="button" onClick={() => add(description)}>
           <CgAddR />
         </ButtonAdd>
-        <ButtonSearch type="button" onClick={handleSearch}>
+        <ButtonSearch type="button" onClick={() => search(description)}>
           <BsSearch />
         </ButtonSearch>
       </Content>
@@ -73,6 +73,6 @@ const mapStateToProps = (state: any) => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => 
-bindActionCreators({changeDescription}, dispatch)
+bindActionCreators({changeDescription, add, search}, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Form);

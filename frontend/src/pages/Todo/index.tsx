@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import axios from "axios";
 
 // template
@@ -40,22 +40,6 @@ const Todo = () => {
     });
   };
 
-  const handleSearchList = useCallback(() => {
-    refreshPage(valueDescription)
-  }, [valueDescription])
-
-  const handleAddTodoList = useCallback(() => {
-    const description = valueDescription;
-    if (description.length > 0) {
-      axios.post(URL, { description }).then((resp) => {
-        console.log(resp);
-        refreshPage("");
-      });
-    } else {
-      alert("Campo para adicionar tarefa está vazio!");
-    }
-  }, [valueDescription]);
-
   const handleAsDoneTodoList = useCallback((todoList: ListType) => {
     axios
       .put(`${URL}/${todoList._id}`, { ...todoList, done: true })
@@ -68,29 +52,19 @@ const Todo = () => {
       .then((resp) => refreshPage(valueDescription));
   }, [valueDescription]);
 
-  const handleRemoveTodoList = useCallback((id: string) => {
-    axios.delete(`${URL}/${id}`).then((resp) => refreshPage(valueDescription));
-  }, [valueDescription]);
 
   const handleClearTodoList = useCallback(() => {
     refreshPage("")
   },[])
 
-  useEffect(() => {
-    refreshPage("");
-  }, []);
-
   return (
     <Container>
       <PageHeader name="Tarefas" small="Cadastro" />
       <Form
-        handleAdd={handleAddTodoList}
-        handleSearch={handleSearchList}
         handleClear={handleClearTodoList}
       />
 
       <List
-        handleRemove={handleRemoveTodoList}
         handleCheckList={handleAsDoneTodoList}
         handleMarkAsPeddingList={handleMarkAsPeddingList}
       />
