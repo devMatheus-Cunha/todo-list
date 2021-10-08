@@ -57,6 +57,10 @@ const Todo = () => {
     refreshPage("")
   },[])
 
+  const handleRemoveTodoList = useCallback((id: string) => {
+    axios.delete(`${URL}/${id}`).then((resp) => refreshPage(valueDescription));
+  }, [valueDescription]);
+
   return (
     <Container>
       <PageHeader name="Tarefas" small="Cadastro" />
@@ -67,6 +71,7 @@ const Todo = () => {
       <List
         handleCheckList={handleAsDoneTodoList}
         handleMarkAsPeddingList={handleMarkAsPeddingList}
+        handleRemoveTodoList={handleRemoveTodoList}
       />
     </Container>
   );

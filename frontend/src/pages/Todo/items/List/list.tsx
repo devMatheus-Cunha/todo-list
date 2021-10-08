@@ -19,6 +19,7 @@ interface IListProps {
   search: any;
   list: any
   remove?:any;
+  handleRemoveTodoList?: any
   handleCheckList: (id: ListType) => void;
   handleMarkAsPeddingList: (id: ListType) => void;
 }
@@ -34,6 +35,7 @@ const List = ({
   list,
   search,
   handleCheckList,
+  handleRemoveTodoList,
   handleMarkAsPeddingList,
 }: IListProps) => {
   const listDataRequest = list || [];
@@ -88,8 +90,8 @@ const List = ({
                   <Tooltip title="Deletar" placement="top" arrow>
                     <button
                       type="button"
-                      onClick={() => console.log(list._id) }
-                      // onClick={() => remove(list._id) }
+                      // onClick={() => console.log(list._id) }
+                      onClick={() => handleRemoveTodoList(list._id) }
                     >
                       <img src={trashImage} alt="Lixeira" />
                     </button>
