@@ -1,8 +1,7 @@
-const initialState = 
-  {
-    description: "",
-    list: [],
-  }
+const initialState = {
+  description: "",
+  list: [],
+};
 
 export const ReduceStateTodoAndDescription = (
   state = initialState,
@@ -19,14 +18,14 @@ export const ReduceStateTodoAndDescription = (
         ...state,
         list: payload.data,
       };
-    case "ADD_DATA":
+    case "CLEAR_DESCRIPTION":
       return {
         ...state,
         description: "",
       };
-      default:
-        return {
-          ...state,
-        };
-      }
-    };
+    default:
+      return {
+        ...state,
+      };
+  }
+};

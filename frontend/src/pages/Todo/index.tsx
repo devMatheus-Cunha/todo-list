@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React from "react";
 
 // template
 import PageHeader from "../../template/PageHeader";
@@ -12,15 +12,10 @@ import { Container } from "./styles";
 
 const Todo = () => {
 
-  const handleClearTodoList = useCallback(() => {
-    console.log("");
-  }, []);
-
   return (
     <Container>
       <PageHeader name="Tarefas" small="Cadastro" />
-      <Form handleClear={handleClearTodoList} />
-
+      <Form />
       <List />
     </Container>
   );
