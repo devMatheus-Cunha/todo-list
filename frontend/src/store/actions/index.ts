@@ -31,11 +31,11 @@ export const add = (description: string) => {
   };
 };
 
-// export const remove = (id: any) => {
-//   return (dispatch: any) => {
-//     axios.delete(`${URL}/${id}`).then(() => dispatch(search()))
-//   };
-// };
+export const remove = (id: any) => {
+  return (dispatch: any) => {
+    axios.delete(`${URL}/${id}`).then(() => dispatch(search()))
+  };
+};
 
 export const markAsDone = (todo: any) => {
   return (dispatch: any) => {

@@ -10,14 +10,6 @@ import List from "./items/List/list";
 // styles
 import { Container } from "./styles";
 
-// interface and type
-type ListType = {
-  createdAt: string;
-  description: string;
-  done: boolean;
-  _id: string;
-};
-
 const Todo = () => {
 
   const handleClearTodoList = useCallback(() => {
