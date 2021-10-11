@@ -11,7 +11,7 @@ import refreshImage from "../../../../assets/images/refresh.svg";
 // styles
 import { Container } from "./styles";
 import { bindActionCreators } from "redux";
-import { search } from "../../../../store/actions";
+import { markAsDone, markAsPedding, remove, search } from "../../../../store/actions";
 
 
 // interface and type
@@ -19,9 +19,8 @@ interface IListProps {
   search: any;
   list: any
   remove?:any;
-  handleRemoveTodoList?: any
-  handleCheckList: (id: ListType) => void;
-  handleMarkAsPeddingList: (id: ListType) => void;
+  markAsDone:any
+  markAsPedding: (id: ListType) => void;
 }
 
 type ListType = {
@@ -34,9 +33,9 @@ type ListType = {
 const List = ({
   list,
   search,
-  handleCheckList,
-  handleRemoveTodoList,
-  handleMarkAsPeddingList,
+  markAsDone,
+  remove,
+  markAsPedding,
 }: IListProps) => {
   const listDataRequest = list || [];
 
@@ -71,7 +70,7 @@ const List = ({
                       <Tooltip title="Concluido" placement="top" arrow>
                         <button
                           type="button"
-                          onClick={() => handleCheckList(list)}
+                          onClick={() => markAsDone(list)}
                         >
                           <img src={checImage} alt="Concluido" />
                         </button>
@@ -80,7 +79,7 @@ const List = ({
                       <Tooltip title="Renovar" placement="top" arrow>
                         <button
                           type="button"
-                          onClick={() => handleMarkAsPeddingList(list)}
+                          onClick={() => markAsPedding(list)}
                         >
                           <img src={refreshImage} alt="Renovar" />
                         </button>
@@ -90,8 +89,7 @@ const List = ({
                   <Tooltip title="Deletar" placement="top" arrow>
                     <button
                       type="button"
-                      // onClick={() => console.log(list._id) }
-                      onClick={() => handleRemoveTodoList(list._id) }
+                      onClick={() => remove(list._id) }
                     >
                       <img src={trashImage} alt="Lixeira" />
                     </button>
@@ -113,6 +111,6 @@ const mapStateToProps = (state: any) => ({
   list: state.todo.list
 })
 const mapDispatchToProps = (dispatch: Dispatch) => 
-bindActionCreators({search}, dispatch)
+bindActionCreators({search, markAsDone, markAsPedding, remove}, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(List)
