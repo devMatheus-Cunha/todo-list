@@ -4,8 +4,6 @@ const initialState =
     list: [],
   }
 
-  console.log(initialState.list)
-
 export const ReduceStateTodoAndDescription = (
   state = initialState,
   { type, payload }: any
