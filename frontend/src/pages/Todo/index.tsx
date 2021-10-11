@@ -29,13 +29,11 @@ const URL = "http://localhost:3003/api/todos";
 const Todo = () => {
   // states
   const [valueDescription, setValueDescription] = useState<string>("");
-  const [list, setList] = useState<IListProps[]>();
 
   // functions
   const refreshPage = (description: string) => {
     const search = description ? `&description__regex=/${description}/` : "";
     axios.get(`${URL}?sort=-createAt${search}`).then((resp) => {
-      setList(resp.data);
       setValueDescription(description);
     });
   };
