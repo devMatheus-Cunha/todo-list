@@ -20,7 +20,6 @@ export const search = () => {
   };
 };
 
-
 export const add = (description: string) => {
   return (dispatch: any) => {
     axios.post(URL, { description }).then((res) => {
@@ -28,11 +27,25 @@ export const add = (description: string) => {
         type: "ADD_DATA",
         payload: res.data
        });
-    }).then((res) => dispatch(search()))
+    }).then(() => dispatch(search()))
   };
 };
 
-export const remove = (id: any) => {
-  const request = axios.delete(`${URL}/${id}`);
-  return [{ type: "REMOVE_DATA", payload: request }];
+// export const remove = (id: any) => {
+//   return (dispatch: any) => {
+//     axios.delete(`${URL}/${id}`).then(() => dispatch(search()))
+//   };
+// };
+
+export const markAsDone = (todo: any) => {
+  return (dispatch: any) => {
+    axios.put(`${URL}/${todo._id}`, { ...todo, done: true }).then(() => dispatch(search()))
+  };
 };
+
+export const markAsPedding = (todo: any) => {
+  return (dispatch: any) => {
+    axios.put(`${URL}/${todo._id}`, { ...todo, done: false }).then(() => dispatch(search()))
+  };
+};
+
