@@ -22,30 +22,37 @@ export const search = () => {
 
 export const add = (description: string) => {
   return (dispatch: any) => {
-    axios.post(URL, { description }).then((res) => {
-      dispatch({ 
-        type: "ADD_DATA",
-        payload: res.data
-       });
-    }).then(() => dispatch(search()))
+    axios
+      .post(URL, { description })
+      .then(() => dispatch(clear()))
+      .then(() => dispatch(search()));
   };
 };
 
 export const remove = (id: any) => {
   return (dispatch: any) => {
-    axios.delete(`${URL}/${id}`).then(() => dispatch(search()))
+    axios.delete(`${URL}/${id}`).then(() => dispatch(search()));
   };
 };
 
 export const markAsDone = (todo: any) => {
   return (dispatch: any) => {
-    axios.put(`${URL}/${todo._id}`, { ...todo, done: true }).then(() => dispatch(search()))
+    axios
+      .put(`${URL}/${todo._id}`, { ...todo, done: true })
+      .then(() => dispatch(search()));
   };
 };
 
 export const markAsPedding = (todo: any) => {
   return (dispatch: any) => {
-    axios.put(`${URL}/${todo._id}`, { ...todo, done: false }).then(() => dispatch(search()))
+    axios
+      .put(`${URL}/${todo._id}`, { ...todo, done: false })
+      .then(() => dispatch(search()));
   };
 };
 
+export const clear = () => {
+  return {
+    type: "CLEAR_DESCRIPTION",
+  };
+};
