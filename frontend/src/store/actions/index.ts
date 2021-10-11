@@ -20,12 +20,19 @@ export const search = () => {
   };
 };
 
-export const add = (description: any) => {
-  const request = axios.post(URL, { description });
-  return [{ type: "ADD_DATA", payload: request }, search()];
+
+export const add = (description: string) => {
+  return (dispatch: any) => {
+    axios.post(URL, { description }).then((res) => {
+      dispatch({ 
+        type: "ADD_DATA",
+        payload: res.data
+       });
+    }).then((res) => dispatch(search()))
+  };
 };
 
 export const remove = (id: any) => {
-  const request = axios.delete(`${URL}/${id}`)
+  const request = axios.delete(`${URL}/${id}`);
   return [{ type: "REMOVE_DATA", payload: request }];
 };
