@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import { Dispatch } from "redux"
-import { connect } from 'react-redux'
+import { Dispatch } from "redux";
+import { connect } from "react-redux";
 import { Tooltip } from "@material-ui/core";
 
 // images
@@ -11,16 +11,21 @@ import refreshImage from "../../../../assets/images/refresh.svg";
 // styles
 import { Container } from "./styles";
 import { bindActionCreators } from "redux";
-import { markAsDone, markAsPedding, remove, search } from "../../../../store/actions";
-
+import {
+  markAsDone,
+  markAsPedding,
+  remove,
+  search,
+} from "../../../../store/actions";
 
 // interface and type
 interface IListProps {
   search: any;
-  list: any
-  remove?:any;
-  markAsDone:any
-  markAsPedding: (id: ListType) => void;
+  list: any;
+  remove?: any;
+  description: any
+  markAsDone: any;
+  markAsPedding: any;
 }
 
 type ListType = {
@@ -35,14 +40,15 @@ const List = ({
   search,
   markAsDone,
   remove,
+  description,
   markAsPedding,
 }: IListProps) => {
   const listDataRequest = list || [];
 
   useEffect(() => {
-    search()
-  }, [search])
-  
+    search();
+  }, [search]);
+
   return (
     <Container>
       {list && list.length > 0 ? (
@@ -70,7 +76,7 @@ const List = ({
                       <Tooltip title="Concluido" placement="top" arrow>
                         <button
                           type="button"
-                          onClick={() => markAsDone(list)}
+                          onClick={() => markAsDone(list, description)}
                         >
                           <img src={checImage} alt="Concluido" />
                         </button>
@@ -79,7 +85,7 @@ const List = ({
                       <Tooltip title="Renovar" placement="top" arrow>
                         <button
                           type="button"
-                          onClick={() => markAsPedding(list)}
+                          onClick={() => markAsPedding(list, description)}
                         >
                           <img src={refreshImage} alt="Renovar" />
                         </button>
@@ -87,10 +93,7 @@ const List = ({
                     )}
                   </>
                   <Tooltip title="Deletar" placement="top" arrow>
-                    <button
-                      type="button"
-                      onClick={() => remove(list._id) }
-                    >
+                    <button type="button" onClick={() => remove(list._id)}>
                       <img src={trashImage} alt="Lixeira" />
                     </button>
                   </Tooltip>
@@ -106,11 +109,11 @@ const List = ({
   );
 };
 
-
 const mapStateToProps = (state: any) => ({
-  list: state.todo.list
-})
-const mapDispatchToProps = (dispatch: Dispatch) => 
-bindActionCreators({search, markAsDone, markAsPedding, remove}, dispatch)
+  description: state.todo.description,
+  list: state.todo.list,
+});
+const mapDispatchToProps = (dispatch: Dispatch) =>
+  bindActionCreators({ search, markAsDone, markAsPedding, remove }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(List)
+export default connect(mapStateToProps, mapDispatchToProps)(List);

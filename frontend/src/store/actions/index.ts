@@ -10,10 +10,9 @@ export const changeDescription = (event: any) => {
   };
 };
 
-export const search = () => {
-  // const search = description ? `&description__regex=/${description}/` : "";
-  // const getData = axios.get(`${URL}?sort=-createAt${search}`);
-  const getData = axios.get(`${URL}?sort=-createAt`);
+export const search = (description: any) => {
+  const search = description ? `&description__regex=/${description}/` : "";
+  const getData = axios.get(`${URL}?sort=-createAt${search}`);
   return {
     type: "LIST_CHAGED",
     payload: getData,
@@ -25,34 +24,35 @@ export const add = (description: string) => {
     axios
       .post(URL, { description })
       .then(() => dispatch(clear()))
-      .then(() => dispatch(search()));
+      .then(() => dispatch(search(false)));
   };
 };
 
 export const remove = (id: any) => {
   return (dispatch: any) => {
-    axios.delete(`${URL}/${id}`).then(() => dispatch(search()));
+    axios.delete(`${URL}/${id}`).then(() => dispatch(search(false)));
   };
 };
 
-export const markAsDone = (todo: any) => {
+export const markAsDone = (todo: any, description: any) => {
   return (dispatch: any) => {
     axios
       .put(`${URL}/${todo._id}`, { ...todo, done: true })
-      .then(() => dispatch(search()));
+      .then(() => dispatch(search(description)));
   };
 };
 
-export const markAsPedding = (todo: any) => {
+export const markAsPedding = (todo: any, description: any) => {
   return (dispatch: any) => {
     axios
       .put(`${URL}/${todo._id}`, { ...todo, done: false })
-      .then(() => dispatch(search()));
+      .then(() => dispatch(search(description)));
   };
 };
 
 export const clear = () => {
-  return {
-    type: "CLEAR_DESCRIPTION",
-  };
+  return (dispatch: any) => {
+    dispatch({ type: "CLEAR_DESCRIPTION"})
+    dispatch(search(false))
+  }
 };

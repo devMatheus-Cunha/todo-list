@@ -34,7 +34,7 @@ const Form = ({ add, description, changeDescription, search, clear }: FormProps)
   // function
   const keyHandler = (event: any) => {
     if (event.key === "Enter") {
-      event.shiftKey ? search() : add(description);
+      event.shiftKey ? search(description) : add(description);
     } else if (event.key === "Escape") {
       clear();
     }
